@@ -8,9 +8,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
+filetype indent on
 map <F5> I// <ESC>
 map <F11> ^xx
+set foldmethod=indent
 set ts=4
+set softtabstop=4
+
+set nofoldenable
 set relativenumber
 set autoindent
 set smartindent
@@ -77,12 +82,28 @@ endif
 " Don't wake up system with blinking cursor:
 " http://www.linuxpowertop.org/known.php
 let &guicursor = &guicursor . ",a:blinkon0"
+Bundle 'Raimondi/delimitMate'
 Plugin 'wakatime/vim-wakatime'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/unite.vim'
-Bundle 'm2mdas/phpcomplete-extended'
+
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap { {}<LEFT>
 inoremap < <><LEFT>
 inoremap " ""<LEFT>
+
+" indent
+set list
+set listchars=tab:\|\ ,
+
+set showcmd
+
+map ,ch :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
