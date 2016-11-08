@@ -3,7 +3,7 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 endif
 
 set nocompatible
-filetype off
+filetype plugin on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -15,6 +15,9 @@ set foldmethod=indent
 set ts=4
 set softtabstop=4
 
+" fuzzy find
+set path+=**
+set wildmenu
 set nofoldenable
 set relativenumber
 set autoindent
@@ -91,11 +94,6 @@ inoremap { {}<LEFT>
 inoremap < <><LEFT>
 inoremap " ""<LEFT>
 
-" indent
-set list
-set listchars=tab:\|\ ,
-
-set showcmd
 
 map ,ch :call SetColorColumn()<CR>
 function! SetColorColumn()
