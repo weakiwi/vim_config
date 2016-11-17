@@ -1,6 +1,8 @@
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=ucs-bom,utf-8,latin1
 endif
+"auto reload when file changes
+set autoread
 
 set nocompatible
 filetype plugin on
@@ -14,10 +16,23 @@ map <F11> ^xx
 set foldmethod=indent
 set ts=4
 set softtabstop=4
+set ai
 
+" cross
+set cul
+set cul
+
+"php function auto complete
+au FileType php call PHPFuncList()
+function PHPFuncList()
+        set dictionary-=/home/yang/.vim/plugin/php_funclist.txt
+        set dictionary+=/home/yang/.vim/plugin/php_funclist.txt
+        set complete-=k complete+=k
+endfunction
+set nocp
 " fuzzy find
-set path+=**
-set wildmenu
+"set path+=**
+"set wildmenu
 set nofoldenable
 set relativenumber
 set autoindent
@@ -88,20 +103,21 @@ let &guicursor = &guicursor . ",a:blinkon0"
 Bundle 'Raimondi/delimitMate'
 Plugin 'wakatime/vim-wakatime'
 
+let g:rainbow_active = 1
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap { {}<LEFT>
 inoremap < <><LEFT>
 inoremap " ""<LEFT>
 
+autocmd BufWritePost *.php call PHPSyntaxCheck()
+if !exists('g:PHP_SYNTAX_CHECK_BIN')
+        let g:PHP_SYNTAX_CHECK_BIN = 'php'
+endif
 
-map ,ch :call SetColorColumn()<CR>
-function! SetColorColumn()
-    let col_num = virtcol(".")
-    let cc_list = split(&cc, ',')
-    if count(cc_list, string(col_num)) <= 0
-        execute "set cc+=".col_num
-    else
-        execute "set cc-=".col_num
-    endif
+function! PHPSyntaxCheck()
+        let result = system(g:PHP_SYNTAX_CHECK_BIN.' -l -n '.expand('%'))
+        if (stridx(result, 'No syntax errors detected') == -1)
+                echohl WarningMsg | echo result | echohl None
+        endif
 endfunction
