@@ -1,2 +1,4 @@
 Please intsall Vundle first
-I love vim
+
+cp autogit.vim to ~/.vim/plugin/
+and then you can use F2 to auto git commit -a -m "current time"
