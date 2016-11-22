@@ -15,4 +15,4 @@ else:
         print "git commit at " + cur_s_time
 EOF
 endfunction
-noremap <F2> :call Autogit()<cr>
+noremap <F2> :call Autogit()<cr><cr>
