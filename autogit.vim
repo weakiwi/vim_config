@@ -2,6 +2,7 @@ function! Autogit()
 python << EOF
 import vim
 import commands
+import time
 cur_f_name = vim.eval("expand('%:p')")
 cur_s_time = vim.eval("strftime('%Y-%d-%m %H:%M')")
 status, result_1 = commands.getstatusoutput("git add " + cur_f_name)
@@ -13,6 +14,7 @@ if status and status_1 != 0:
         print status
 else:
         print "git commit at " + cur_s_time
+        time.sleep(2)
 EOF
 endfunction
 noremap <F2> :call Autogit()<cr><cr>
