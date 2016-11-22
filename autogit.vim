@@ -13,3 +13,4 @@ if status and status_1 != 0:
         print status
 EOF
 endfunction
+noremap <F2> :call Autogit()<cr>
