@@ -11,6 +11,5 @@ print result_w
 if status and status_1 != 0:
         #print "git commit fail, please check your .git"
         print status
-print vim_cur_buff
 EOF
 endfunction
