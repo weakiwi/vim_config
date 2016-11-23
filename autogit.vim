@@ -13,8 +13,8 @@ if status and status_1 != 0:
         #print "git commit fail, please check your .git"
         print status
 else:
-        print "git commit at " + cur_s_time
+        vim.command("echo 'git commit success at" + cur_s_time + "'")
         time.sleep(2)
 EOF
 endfunction
-noremap <F2> :call Autogit()<cr><cr>
+noremap <F2> :call Autogit()<cr>
