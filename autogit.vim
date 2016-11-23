@@ -14,7 +14,8 @@ if status and status_1 != 0:
         print status
 else:
         vim.command("echo 'git commit success at" + cur_s_time + "'")
-        time.sleep(2)
+        time.sleep(1)
+        vim.command("<cr>")
 EOF
 endfunction
 noremap <F2> :call Autogit()<cr>
