@@ -8,7 +8,6 @@ cur_s_time = vim.eval("strftime('%Y-%d-%m %H:%M')")
 vim.command("w")
 status, result_1 = commands.getstatusoutput("git add " + cur_f_name)
 status_1, result_1 = commands.getstatusoutput("git commit -a -m " + "'"+ cur_s_time +"'")
-print result_w
 if status and status_1 != 0:
         #print "git commit fail, please check your .git"
         print status
