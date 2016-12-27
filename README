@@ -1,4 +1,5 @@
-Please intsall Vundle first
+Please intsall Vundle,zsh,zsh-autosuggestion first
+
 
 cp autogit.vim to ~/.vim/plugin/
 and then you can use F2 to auto git commit -a -m "current time"
